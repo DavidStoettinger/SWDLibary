@@ -1,33 +1,12 @@
-package at.fh.winb.swd.libary.entity;
+package at.fh.winb.swd.libary.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import at.fh.winb.swd.libary.dto.base.BaseDTO;
 
-@Entity
-public class Medien {
-
-
-    //region id
-    private Long id;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
-    }
-    //endregion
-
+public class MedienDTO extends BaseDTO {
     private int FSK;
     private String Name;
     private String Beschreibung;
 
-    @Column
     public int getFSK() {
         return FSK;
     }
@@ -36,7 +15,6 @@ public class Medien {
         this.FSK = FSK;
     }
 
-    @Column
     public String getName() {
         return Name;
     }
@@ -45,7 +23,6 @@ public class Medien {
         Name = name;
     }
 
-    @Column
     public String getBeschreibung() {
         return Beschreibung;
     }

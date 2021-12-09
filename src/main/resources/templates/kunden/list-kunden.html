@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All stored customers</title>
+</head>
+<body>
+<table>
+  <caption>customer overview</caption>
+  <thead>
+  <tr>
+    <th id="name">Name</th>
+    <th id="details">Details</th>
+    <th id="edit">Edit</th>
+    <th id="delete">Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:if="${#lists.isEmpty(elements)}">
+    <td colspan="2"> No customers available</td>
+  </tr>
+  <tr th:each="kunde : ${elements}">
+    <td><span th:text="${kunde.name}"></span></td>
+    <td><a th:href="@{/kunden/{id}(id=${kunde.id})}">Show details</a></td>
+    <td><a th:href="@{/kunden/edit/{id}(id=${kunde.id})}">Edit</a></td>
+    <td><a th:href="@{/kunden/delete/{id}(id=${kunde.id})}">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+<a href="/kunden/create">Create a new customer</a>
+</body>
+</html>

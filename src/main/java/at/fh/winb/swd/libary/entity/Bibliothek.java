@@ -1,5 +1,6 @@
 package at.fh.winb.swd.libary.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,6 +24,7 @@ public class Bibliothek {
 
     private String addresse;
 
+    @Column
     public String getAddresse() {
         return addresse;
     }

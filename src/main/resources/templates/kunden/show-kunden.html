@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>customer detail view</title>
+</head>
+<body>
+<p th:if="${kundenDTO} == null">customer not found</p>
+<a>Name:
+  <th id="name" th:text="${kundenDTO.name}"></th>
+</a>
+
+
+
+<th id="newResultLink"><a th:href="@{/registeredtests/{personId}(personId=${kundenDTO.id})}">Show all test results</a>
+</th>
+<br>
+<a href="/kunden">Back to all customer</a>
+</body>
+</html>

@@ -1,28 +1,24 @@
-package at.fh.winb.swd.libary.entity;
+package at.fh.winb.swd.libary.dto.base;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.util.Date;
 
-@Entity
-public class Kunde {
-    //region id
+public class BaseDTO {
     private Long id;
     private Date createdTimestamp;
     private Date modifiedTimestamp;
 
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    public Long getId() {
-        return id;
-    }
-
+    @CreationTimestamp
     public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
@@ -31,6 +27,7 @@ public class Kunde {
         this.createdTimestamp = createdTimestamp;
     }
 
+    @UpdateTimestamp
     public Date getModifiedTimestamp() {
         return modifiedTimestamp;
     }
@@ -39,16 +36,4 @@ public class Kunde {
         this.modifiedTimestamp = modifiedTimestamp;
     }
 
-    //endregion
-
-    private String Name;
-
-    @Column
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
 }

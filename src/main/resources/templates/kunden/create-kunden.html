@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new customer</title>
+</head>
+<body>
+<form action="#" th:action="@{/kunden}" th:object="${kundenDTO}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <input type="submit" value="Add User">
+</form>
+<a href="/kunden">Back to all customers</a>
+</body>
+</html>

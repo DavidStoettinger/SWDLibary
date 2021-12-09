@@ -1,8 +1,6 @@
 package at.fh.winb.swd.libary.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Exemplar {
@@ -22,12 +20,33 @@ public class Exemplar {
     //endregion
 
     private Boolean ausgeliehen;
+    private Medien medien;
+    private Bibliothek bibliothek;
 
+    @Column
     public Boolean getAusgeliehen() {
         return ausgeliehen;
     }
 
     public void setAusgeliehen(Boolean ausgeliehen) {
         this.ausgeliehen = ausgeliehen;
+    }
+
+    @ManyToOne
+    public Medien getMedien() {
+        return medien;
+    }
+
+    public void setMedien(Medien medien) {
+        this.medien = medien;
+    }
+
+    @ManyToOne
+    public Bibliothek getBibliothek() {
+        return bibliothek;
+    }
+
+    public void setBibliothek(Bibliothek bibliothek) {
+        this.bibliothek = bibliothek;
     }
 }
