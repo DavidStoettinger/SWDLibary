@@ -1,0 +1,51 @@
+body {
+    background-color: #f3f3f3;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerDiv {
+    flex-grow: 1;
+}
+
+.content {
+    background-color: #ffffff;
+    flex-grow: 4;
+    border: 0.1rem solid #c8c8c8;
+    border-radius: 0.25rem;
+    display: block;
+    padding: 0.25rem;
+    padding-top: 0.5rem;
+}
+
+/* list-kunden: table*/
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0.5rem;
+}
+
+.content th {
+    border-bottom: 0.1rem solid #c8c8c8;;
+}
+
+.content caption {
+    font-size: x-large;
+    padding-bottom: 0.5rem;
+}
+
+.listTD {
+    color: red;
+    text-align: center;
+}
+/* list-kunden*/
+/* create-kunden*/
+.detailDiv {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+/* create-kunden*/

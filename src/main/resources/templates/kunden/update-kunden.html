@@ -3,16 +3,31 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="/main.css">
     <meta charset="UTF-8">
     <title>Update customer</title>
 </head>
 <body>
-<!--/*@thymesVar id="personDTO" type="at.fhs.swd.covidtestingapp.dto.PersonDTO"*/-->
-<form action="#" th:action="@{/kunden/update/{id}(id=${kundenDTO.id})}" th:object="${kundenDTO}" method="post">
-    <label for="name">Name</label>
-    <input type="text" th:field="*{name}" id="name" placeholder="Name">
-    <input type="submit" value="Update">
-</form>
-<th id="backToPersonLink"><a th:href="@{/kunden/{id}(id=${kundenDTO.id})}">Back to customer details</a></th>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <!--/*@thymesVar id="personDTO" type="at.fhs.swd.covidtestingapp.dto.PersonDTO"*/-->
+        <form action="#" th:action="@{/kunden/update/{id}(id=${kundenDTO.id})}" th:object="${kundenDTO}" method="post">
+            <div class="detailDiv">
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+                </div>
+                <div>
+                    <input type="submit" value="Update">
+                </div>
+            </div>
+        </form>
+        <th id="backToPersonLink">
+            <a th:href="@{/kunden/{id}(id=${kundenDTO.id})}">Back to customer details</a>
+        </th>
+    </div>
+    <div class="containerDiv"></div>
+</div>
 </body>
 </html>

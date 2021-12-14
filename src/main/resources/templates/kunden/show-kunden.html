@@ -3,20 +3,30 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>customer detail view</title>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>customer detail view</title>
 </head>
 <body>
-<p th:if="${kundenDTO} == null">customer not found</p>
-<a>Name:
-  <th id="name" th:text="${kundenDTO.name}"></th>
-</a>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <div class="detailDiv">
+            <div>
+                <p th:if="${kundenDTO} == null">customer not found</p>
+                <a>Name:
+                    <th id="name" th:text="${kundenDTO.name}"></th>
+                </a>
+            </div>
+        </div>
 
-
-
-<th id="newResultLink"><a th:href="@{/registeredtests/{personId}(personId=${kundenDTO.id})}">Show all test results</a>
-</th>
-<br>
-<a href="/kunden">Back to all customer</a>
+        <!--
+        <th id="newResultLink"><a th:href="@{/registeredtests/{personId}(personId=${kundenDTO.id})}">Show all test
+            results</a>
+        </th>-->
+        <a href="/kunden">Back to all customer</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
 </body>
 </html>
