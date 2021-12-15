@@ -50,9 +50,6 @@ public class KundeServiceImpl implements KundeService {
         }
 
         final  Kunde entity = new Kunde();
-        Random rand = new Random(System.currentTimeMillis());
-        Long tmpId = rand.nextLong()%1000000;
-        entity.setId(tmpId < 0 ? tmpId*-1 : tmpId);
         return saveEntity(convertToEntity(kundenDTO,entity));
     }
 

@@ -1,14 +1,13 @@
 package at.fh.winb.swd.libary.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Kunde {
     //region id
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date createdTimestamp;
     private Date modifiedTimestamp;
@@ -18,7 +17,7 @@ public class Kunde {
         this.id = id;
     }
 
-    @Id
+
     public Long getId() {
         return id;
     }
