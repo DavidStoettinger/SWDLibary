@@ -19,11 +19,13 @@ public class Exemplar {
     }
     //endregion
 
+    @Column
     private Boolean ausgeliehen;
+    @ManyToOne
     private Medien medien;
+    @ManyToOne
     private Bibliothek bibliothek;
 
-    @Column
     public Boolean getAusgeliehen() {
         return ausgeliehen;
     }
@@ -32,7 +34,6 @@ public class Exemplar {
         this.ausgeliehen = ausgeliehen;
     }
 
-    @ManyToOne
     public Medien getMedien() {
         return medien;
     }
@@ -41,7 +42,6 @@ public class Exemplar {
         this.medien = medien;
     }
 
-    @ManyToOne
     public Bibliothek getBibliothek() {
         return bibliothek;
     }

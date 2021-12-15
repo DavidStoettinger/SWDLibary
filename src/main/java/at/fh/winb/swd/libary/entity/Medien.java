@@ -20,11 +20,14 @@ public class Medien {
     }
     //endregion
 
+    @Column
     private int FSK;
+    @Column
     private String Name;
+    @Column
     private String Beschreibung;
 
-    @Column
+
     public int getFSK() {
         return FSK;
     }
@@ -33,7 +36,6 @@ public class Medien {
         this.FSK = FSK;
     }
 
-    @Column
     public String getName() {
         return Name;
     }
@@ -42,7 +44,6 @@ public class Medien {
         Name = name;
     }
 
-    @Column
     public String getBeschreibung() {
         return Beschreibung;
     }

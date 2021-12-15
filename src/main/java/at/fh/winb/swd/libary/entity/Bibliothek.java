@@ -19,9 +19,9 @@ public class Bibliothek {
     }
     //endregion
 
+    @Column
     private String addresse;
 
-    @Column
     public String getAddresse() {
         return addresse;
     }

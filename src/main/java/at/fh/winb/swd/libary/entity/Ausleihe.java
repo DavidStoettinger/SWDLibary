@@ -20,15 +20,21 @@ public class Ausleihe {
     }
     //endregion
 
+    @Column
     private Date Zeitpunkt;
+    @Column
     private Date IstZeit;
+    @Column
     private Date SollZeit;
 
+    @ManyToOne
     private Kunde kunde;
+    @ManyToOne
     private Exemplar exemplar;
+    @OneToOne
     private Reservierungen reservierungen;
 
-    @Column
+
     public Date getZeitpunkt() {
         return Zeitpunkt;
     }
@@ -37,7 +43,7 @@ public class Ausleihe {
         Zeitpunkt = zeitpunkt;
     }
 
-    @Column
+
     public Date getIstZeit() {
         return IstZeit;
     }
@@ -46,7 +52,7 @@ public class Ausleihe {
         IstZeit = istZeit;
     }
 
-    @Column
+
     public Date getSollZeit() {
         return SollZeit;
     }
@@ -55,7 +61,7 @@ public class Ausleihe {
         SollZeit = sollZeit;
     }
 
-    @ManyToOne
+
     public Kunde getKunde() {
         return kunde;
     }
@@ -64,7 +70,7 @@ public class Ausleihe {
         this.kunde = kunde;
     }
 
-    @ManyToOne
+
     public Exemplar getExemplar() {
         return exemplar;
     }
@@ -73,7 +79,7 @@ public class Ausleihe {
         this.exemplar = exemplar;
     }
 
-    @OneToOne
+
     public Reservierungen getReservierungen() {
         return reservierungen;
     }

@@ -20,12 +20,16 @@ public class Reservierungen {
     }
     //endregion
 
-    private Date Ausleihe;
-    private Date Zeitpunkt;
+    @Column
+    private Date Ausleihe; //Zeitpunkt bis wann die ausleihe erfolgen muss
+    @Column
+    private Date Zeitpunkt; //Zeitpunkt der reservierung
+    @ManyToOne
     private Medien medien;
+    @ManyToOne
     private Kunde kunde;
 
-    @Column
+
     public Date getAusleihe() {
         return Ausleihe;
     }
@@ -34,7 +38,7 @@ public class Reservierungen {
         Ausleihe = ausleihe;
     }
 
-    @Column
+
     public Date getZeitpunkt() {
         return Zeitpunkt;
     }
@@ -44,7 +48,7 @@ public class Reservierungen {
     }
 
 
-    @ManyToOne
+
     public Medien getMedien() {
         return medien;
     }
@@ -53,7 +57,7 @@ public class Reservierungen {
         this.medien = medien;
     }
 
-    @ManyToOne
+
     public Kunde getKunde() {
         return kunde;
     }

@@ -40,9 +40,10 @@ public class Kunde {
 
     //endregion
 
+    @Column
     private String Name;
 
-    @Column
+
     public String getName() {
         return Name;
     }
