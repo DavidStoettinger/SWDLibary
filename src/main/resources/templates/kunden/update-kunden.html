@@ -11,7 +11,7 @@
 <div class="container">
     <div class="containerDiv"></div>
     <div class="content containerDiv">
-        <!--/*@thymesVar id="personDTO" type="at.fhs.swd.covidtestingapp.dto.PersonDTO"*/-->
+        <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.KundenDTO"*/-->
         <form action="#" th:action="@{/kunden/update/{id}(id=${kundenDTO.id})}" th:object="${kundenDTO}" method="post">
             <div class="detailDiv">
                 <div>

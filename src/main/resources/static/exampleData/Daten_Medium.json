@@ -1,0 +1,20 @@
+[
+	{
+		"id":"0001",
+		"FSK":"01",
+		"Name":"testMedium1",
+		"Beschreibung":"Lorem ipsum sit dolor amed"
+	},
+	{
+		"id":"0002",
+		"FSK":"16",
+		"Name":"testMedium2",
+		"Beschreibung":"Test Medium 2 Beschreibungstext"
+	},
+	{
+		"id":"0003",
+		"FSK":"18",
+		"Name":"testMedium3",
+		"Beschreibung":"Test Medium 3 FSK 18"
+	}
+]

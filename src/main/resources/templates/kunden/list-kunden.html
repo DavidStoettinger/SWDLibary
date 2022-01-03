@@ -25,6 +25,7 @@
             <tr th:if="${#lists.isEmpty(elements)}">
                 <td class="listTD" colspan="6"> No customers available</td>
             </tr>
+            <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.KundenDTO"*/-->
             <tr th:each="kunde : ${elements}">
                 <td colspan="3"><span th:text="${kunde.name}"></span></td>
                 <td colspan="1"><a th:href="@{/kunden/{id}(id=${kunde.id})}">Show details</a></td>
