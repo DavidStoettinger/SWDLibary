@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>All stored medias</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <table>
+            <caption>media overview</caption>
+            <thead>
+            <tr>
+                <th id="name" colspan="3">Name</th>
+                <th id="fsk" colspan="1">FSK</th>
+                <th id="details" colspan="1">Details</th>
+                <th id="edit" colspan="1">Edit</th>
+                <th id="delete" colspan="1">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(elements)}">
+                <td class="listTD" colspan="6"> No Media available</td>
+            </tr>
+            <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.MedienDTO"*/-->
+            <tr th:each="media : ${elements}">
+                <td colspan="3"><span th:text="${media.name}"></span></td>
+                <td colspan="1"><span th:text="${media.fSK}"></span></td>
+                <td colspan="1"><a th:href="@{/medien/{id}(id=${media.id})}">Show details</a></td>
+                <td colspan="1"><a th:href="@{/medien/edit/{id}(id=${media.id})}">Edit</a></td>
+                <td colspan="1"><a th:href="@{/medien/delete/{id}(id=${media.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/medien/create">Create a new Media</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

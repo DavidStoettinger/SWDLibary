@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>Create new Library</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.BibliothekDTO"*/-->
+        <form action="#" th:action="@{/bibliothek}" th:object="${bibliothekDTO}" method="post">
+            <div class="detailDiv">
+                <div>
+                    <label for="adresse">Adresse:</label>
+                    <input type="text" th:field="*{addresse}" id="adresse" placeholder="Adresse">
+                </div>
+                <div>
+                    <input type="submit" value="Add Adresse">
+                </div>
+            </div>
+        </form>
+        <a href="/bibliothek">Back to all libraries</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

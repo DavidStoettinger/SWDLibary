@@ -1,7 +1,9 @@
 package at.fh.winb.swd.libary.controller;
 
 import at.fh.winb.swd.libary.api.KundenApi;
+import at.fh.winb.swd.libary.api.MedienApi;
 import at.fh.winb.swd.libary.dto.KundenDTO;
+import at.fh.winb.swd.libary.dto.MedienDTO;
 import at.fh.winb.swd.libary.searchRequest.SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,26 +15,26 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/kunden")
-public class KundenController {
+@RequestMapping("/medien")
+public class MedienController {
 
-    private final KundenApi kundenApi;
+    private final MedienApi medienApi;
 
-    private final String path = "kunden";
+    private final String path = "medien";
 
     @Autowired
-    public KundenController(final KundenApi kundenApi) {
-        this.kundenApi = kundenApi;
+    public MedienController(final MedienApi medienApi) {
+        this.medienApi = medienApi;
     }
 
     @Transactional
     @GetMapping
     public String list(final Model model) {
         final SearchRequest searchRequest = new SearchRequest(0, 100, null);
-        final List<KundenDTO> element = kundenApi.list(searchRequest).getElements();
+        final List<MedienDTO> element = medienApi.list(searchRequest).getElements();
 
         model.addAttribute("elements", element == null ? Collections.emptyList() : element);
-        model.addAttribute("totalCount", kundenApi.list(searchRequest).getTotalCount());
+        model.addAttribute("totalCount", medienApi.list(searchRequest).getTotalCount());
 
         return (path+"/list-"+path);
     }
@@ -40,21 +42,21 @@ public class KundenController {
     @Transactional
     @GetMapping("/{id}")
     public String get(@PathVariable final String id, final Model model) {
-        model.addAttribute("kundenDTO", kundenApi.get(Long.valueOf(id)));
+        model.addAttribute("medienDTO", medienApi.get(Long.valueOf(id)));
         return (path+"/show-"+path);
     }
 
     @GetMapping("/create")
-    public String requestCreate(final KundenDTO kundenDTO) {
+    public String requestCreate(final MedienDTO medienDTO) {
         return (path+"/create-"+path);
     }
 
 
     @Transactional
     @PostMapping
-    public String create(@ModelAttribute final KundenDTO kundenDTO, final Model model) {
-        final KundenDTO kunden = kundenApi.create(kundenDTO);
-        model.addAttribute("kundenDTO", kunden);
+    public String create(@ModelAttribute final MedienDTO medienDTO, final Model model) {
+        final MedienDTO medien = medienApi.create(medienDTO);
+        model.addAttribute("medienDTO", medien);
         return (path+"/show-"+path);
     }
 
@@ -67,16 +69,16 @@ public class KundenController {
 
     @Transactional
     @PostMapping("/update/{id}")
-    public String update(@PathVariable final String id, @ModelAttribute final KundenDTO kundenDTO, final Model model) {
-        final KundenDTO kunden = kundenApi.update(Long.valueOf(id), kundenDTO);
-        model.addAttribute("kundenDTO", kunden);
+    public String update(@PathVariable final String id, @ModelAttribute final MedienDTO medienDTO, final Model model) {
+        final MedienDTO medien = medienApi.update(Long.valueOf(id), medienDTO);
+        model.addAttribute("medienDTO", medien);
         return (path+"/show-"+path);
     }
 
     @Transactional
     @GetMapping("delete/{id}")
     public String delete(@PathVariable final String id, final Model model) {
-        kundenApi.delete(Long.valueOf(id));
+        medienApi.delete(Long.valueOf(id));
         return list(model);
     }
 }

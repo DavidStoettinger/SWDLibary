@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>All stored Libraries</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <table>
+            <caption>Library overview</caption>
+            <thead>
+            <tr>
+                <th id="adresse" colspan="3">Adresse</th>
+                <th id="details" colspan="1">Details</th>
+                <th id="edit" colspan="1">Edit</th>
+                <th id="delete" colspan="1">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(elements)}">
+                <td class="listTD" colspan="6"> No Libraries available</td>
+            </tr>
+            <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.BibliothekDTO"*/-->
+            <tr th:each="bib : ${elements}">
+                <td colspan="3"><span th:text="${bib.addresse}"></span></td>
+                <td colspan="1"><a th:href="@{/bibliothek/{id}(id=${bib.id})}">Show details</a></td>
+                <td colspan="1"><a th:href="@{/bibliothek/edit/{id}(id=${bib.id})}">Edit</a></td>
+                <td colspan="1"><a th:href="@{/bibliothek/delete/{id}(id=${bib.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/bibliothek/create">Create a new Libraries</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>media detail view</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <div class="detailDiv">
+            <div>
+                <p th:if="${medienDTO} == null">media not found</p>
+                <a>Name:
+                    <th id="name" th:text="${medienDTO.name}"></th>
+                </a>
+                <a>FSK:
+                    <th id="FSK" th:text="${medienDTO.FSK}"></th>
+                </a>
+                <a>Beschreibung:
+                    <th id="Beschreibung" th:text="${medienDTO.beschreibung}"></th>
+                </a>
+            </div>
+        </div>
+
+        <!--
+        <th id="newResultLink"><a th:href="@{/registeredtests/{personId}(personId=${MedienDTO.id})}">Show all test
+            results</a>
+        </th>-->
+        <a href="/medien">Back to all media</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

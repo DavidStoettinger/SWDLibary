@@ -22,6 +22,8 @@ public class Ausleihe {
 
     @Column
     private Date Zeitpunkt;
+
+    //Rückgabezeitpunkte
     @Column
     private Date IstZeit;
     @Column

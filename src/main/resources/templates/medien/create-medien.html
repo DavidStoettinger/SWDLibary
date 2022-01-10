@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>Create new media</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.MedienDTO"*/-->
+        <form action="#" th:action="@{/medien}" th:object="${medienDTO}" method="post">
+            <div class="detailDiv">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+                    <label for="FSK">FSK:</label>
+                    <input type="text" th:field="*{FSK}" id="FSK" placeholder="FSK">
+                    <label for="beschreibung">Beschreibung:</label>
+                    <input type="text" th:field="*{beschreibung}" id="beschreibung" placeholder="Beschreibung">
+                </div>
+                <div>
+                    <input type="submit" value="Add Media">
+                </div>
+            </div>
+        </form>
+        <a href="/medien">Back to all media</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>
