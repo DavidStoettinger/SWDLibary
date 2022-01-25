@@ -24,9 +24,9 @@ public class Ausleihe {
     private Date Zeitpunkt;
 
     //Rückgabezeitpunkte
-    @Column
+    @Column(name = "istzeit")
     private Date IstZeit;
-    @Column
+    @Column(name = "sollzeit")
     private Date SollZeit;
 
     @ManyToOne

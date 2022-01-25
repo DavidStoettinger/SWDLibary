@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>Reservation detail view</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <div class="detailDiv">
+            <div>
+                <p th:if="${reservierungenDTO} == null">Reservation not found</p>
+                <a>Name:
+                    <th id="name" th:text="${reservierungenDTO.id}"></th>
+                </a>
+            </div>
+        </div>
+
+        <!--
+        <th id="newResultLink"><a th:href="@{/registeredtests/{personId}(personId=${MedienDTO.id})}">Show all test
+            results</a>
+        </th>-->
+        <a href="/reservierungen">Back to all Reservations</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>All stored Reservation</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <table>
+            <caption>Library overview</caption>
+            <thead>
+            <tr>
+                <th id="adresse" colspan="3">Adresse</th>
+                <th id="details" colspan="1">Details</th>
+                <th id="edit" colspan="1">Edit</th>
+                <th id="delete" colspan="1">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(elements)}">
+                <td class="listTD" colspan="6"> No Reservations available</td>
+            </tr>
+            <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.ReservierungenDTO"*/-->
+            <tr th:each="reservierungen : ${elements}">
+                <td colspan="3"><span th:text="${reservierungen.id}"></span></td>
+                <td colspan="1"><a th:href="@{/bibliothek/{id}(id=${reservierungen.id})}">Show details</a></td>
+                <td colspan="1"><a th:href="@{/bibliothek/edit/{id}(id=${reservierungen.id})}">Edit</a></td>
+                <td colspan="1"><a th:href="@{/bibliothek/delete/{id}(id=${reservierungen.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/reservierungen/create">Create a new Reservation</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

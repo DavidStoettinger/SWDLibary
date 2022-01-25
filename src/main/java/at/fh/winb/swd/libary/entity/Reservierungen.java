@@ -20,10 +20,11 @@ public class Reservierungen {
     }
     //endregion
 
-    @Column
-    private Date Ausleihe; //Zeitpunkt bis wann die ausleihe erfolgen muss
+
     @Column
     private Date Zeitpunkt; //Zeitpunkt der reservierung
+    @Column
+    private Date Ausleihe; //Zeitpunkt bis wann die ausleihe erfolgen muss
     @ManyToOne
     private Medien medien;
     @ManyToOne

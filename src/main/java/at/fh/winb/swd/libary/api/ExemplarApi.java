@@ -8,7 +8,7 @@ import at.fh.winb.swd.libary.searchRequest.SearchRequest;
 public interface ExemplarApi {
     ExemplarDTO get(Long id);
 
-    PagedResultDTO<BibliothekDTO> list(SearchRequest searchRequest);
+    PagedResultDTO<ExemplarDTO> list(SearchRequest searchRequest);
 
     ExemplarDTO create(ExemplarDTO exemplarDTO);
 

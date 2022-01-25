@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>Update Reservation</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.BibliothekDTO"*/-->
+        <form action="#" th:action="@{/reservierungen/update/{id}(id=${reservierungenDTO.id})}" th:object="${reservierungenDTO}" method="post">
+            <div class="detailDiv">
+                <div>
+                    <label for="adresse">Name:</label>
+                    <input type="text" th:field="*{id}" id="adresse" placeholder="Adresse">
+                </div>
+                <div>
+                    <input type="submit" value="Update">
+                </div>
+            </div>
+        </form>
+        <th id="backtoReservationLink">
+            <a th:href="@{/reservierungen/{id}(id=${reservierungenDTO.id})}">Back to Reservation details</a>
+        </th>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

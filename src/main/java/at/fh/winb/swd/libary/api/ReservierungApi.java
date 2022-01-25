@@ -8,7 +8,7 @@ import at.fh.winb.swd.libary.searchRequest.SearchRequest;
 public interface ReservierungApi {
     ReservierungenDTO get(Long id);
 
-    PagedResultDTO<BibliothekDTO> list(SearchRequest searchRequest);
+    PagedResultDTO<ReservierungenDTO> list(SearchRequest searchRequest);
 
     ReservierungenDTO create(ReservierungenDTO reservierungenDTO);
 
