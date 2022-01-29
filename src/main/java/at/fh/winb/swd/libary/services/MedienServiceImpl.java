@@ -4,7 +4,7 @@ import at.fh.winb.swd.libary.dto.MedienDTO;
 import at.fh.winb.swd.libary.dto.base.PagedResultDTO;
 import at.fh.winb.swd.libary.entity.Medien;
 import at.fh.winb.swd.libary.respository.MedienRepository;
-import at.fh.winb.swd.libary.searchRequest.SearchRequest;
+import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
 import at.fh.winb.swd.libary.services.interfaces.MedienService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

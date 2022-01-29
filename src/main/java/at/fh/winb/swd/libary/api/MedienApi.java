@@ -2,7 +2,7 @@ package at.fh.winb.swd.libary.api;
 
 import at.fh.winb.swd.libary.dto.MedienDTO;
 import at.fh.winb.swd.libary.dto.base.PagedResultDTO;
-import at.fh.winb.swd.libary.searchRequest.SearchRequest;
+import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
 
 public interface MedienApi {
     MedienDTO get(Long id);

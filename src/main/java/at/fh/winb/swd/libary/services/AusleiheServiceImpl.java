@@ -2,15 +2,11 @@ package at.fh.winb.swd.libary.services;
 
 
 import at.fh.winb.swd.libary.dto.AusleiheDTO;
-import at.fh.winb.swd.libary.dto.BibliothekDTO;
 import at.fh.winb.swd.libary.dto.base.PagedResultDTO;
 import at.fh.winb.swd.libary.entity.Ausleihe;
-import at.fh.winb.swd.libary.entity.Bibliothek;
 import at.fh.winb.swd.libary.respository.AusleiheRepository;
-import at.fh.winb.swd.libary.respository.BibliothekRepository;
-import at.fh.winb.swd.libary.searchRequest.SearchRequest;
+import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
 import at.fh.winb.swd.libary.services.interfaces.AusleiheService;
-import at.fh.winb.swd.libary.services.interfaces.BibliothekService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instant checkout</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <div class="instant">
+            <caption th:text="'Instant Checkout for '+${exemplarDTO.medien.name}"></caption>
+            <a th:href="@{/rent/{id}/{e_id}/instant(id=${kundenDTO.id},e_id=${exemplarDTO.id})}">Confirm instant
+                checkout</a>
+            <a href="/">Cancel</a>
+        </div>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

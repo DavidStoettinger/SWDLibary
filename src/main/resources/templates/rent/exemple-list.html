@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/main.css">
+    <meta charset="UTF-8">
+    <title>Exemplar-List</title>
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <table>
+            <caption>Exemplar-list</caption>
+            <thead>
+            <tr>
+                <th id="name" colspan="10">Name</th>
+                <th id="add" colspan="1"></th>
+                <th id="instant" colspan="1"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(exemplar)}">
+                <td class="listTD" colspan="6"> No Exemplars available</td>
+            </tr>
+            <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.KundenDTO"*/-->
+            <tr th:each="exe : ${exemplar}">
+                <td colspan="10" th:if="${!exe.ausgeliehen}"><span th:text="${exe.medien.name}"></span></td>
+                <td colspan="1" th:if="${!exe.ausgeliehen}"><a class="cartBorder invalidOP">Add to Cart</a></td>
+                <td colspan="1" th:if="${!exe.ausgeliehen}"><a class="cartBorder"
+                                                               th:href="@{/rent/{id}/{e_id}(id=${kundenDTO.id},e_id=${exe.id})}">Instant
+                    Checkout</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/">Cancel</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

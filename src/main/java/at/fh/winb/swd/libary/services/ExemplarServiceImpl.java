@@ -7,7 +7,7 @@ import at.fh.winb.swd.libary.entity.Bibliothek;
 import at.fh.winb.swd.libary.entity.Exemplar;
 import at.fh.winb.swd.libary.entity.Medien;
 import at.fh.winb.swd.libary.respository.ExemplarRepository;
-import at.fh.winb.swd.libary.searchRequest.SearchRequest;
+import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
 import at.fh.winb.swd.libary.services.interfaces.ExemplarService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

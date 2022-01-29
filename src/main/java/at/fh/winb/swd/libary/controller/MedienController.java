@@ -1,10 +1,8 @@
 package at.fh.winb.swd.libary.controller;
 
-import at.fh.winb.swd.libary.api.KundenApi;
 import at.fh.winb.swd.libary.api.MedienApi;
-import at.fh.winb.swd.libary.dto.KundenDTO;
 import at.fh.winb.swd.libary.dto.MedienDTO;
-import at.fh.winb.swd.libary.searchRequest.SearchRequest;
+import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

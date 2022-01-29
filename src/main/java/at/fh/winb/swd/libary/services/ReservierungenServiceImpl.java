@@ -7,7 +7,7 @@ import at.fh.winb.swd.libary.entity.Kunde;
 import at.fh.winb.swd.libary.entity.Medien;
 import at.fh.winb.swd.libary.entity.Reservierungen;
 import at.fh.winb.swd.libary.respository.ReservierungRepository;
-import at.fh.winb.swd.libary.searchRequest.SearchRequest;
+import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
 import at.fh.winb.swd.libary.services.interfaces.KundeService;
 import at.fh.winb.swd.libary.services.interfaces.MedienService;
 import at.fh.winb.swd.libary.services.interfaces.ReservierungService;

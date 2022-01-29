@@ -46,6 +46,21 @@ body {
 .detailDiv {
     margin-bottom: 0.5rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+}
+.cartBorder{
+    border: 0.1rem solid #c8c8c8;
+    border-radius: 0.25rem;
+}
+
+.invalidOP{
+    background-color: red;
+}
+
+.instant{
+    flex-direction: column;
+    display: flex;
 }
 /* create-kunden*/
+
+

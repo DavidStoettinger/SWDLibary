@@ -4,7 +4,7 @@ import at.fh.winb.swd.libary.dto.BibliothekDTO;
 import at.fh.winb.swd.libary.dto.base.PagedResultDTO;
 import at.fh.winb.swd.libary.entity.Bibliothek;
 import at.fh.winb.swd.libary.respository.BibliothekRepository;
-import at.fh.winb.swd.libary.searchRequest.SearchRequest;
+import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
 import at.fh.winb.swd.libary.services.interfaces.BibliothekService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

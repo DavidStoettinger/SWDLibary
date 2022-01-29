@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <table>
+            <caption>customer overview</caption>
+            <thead>
+            <tr>
+                <th id="name" colspan="3">Name</th>
+                <th id="login" colspan="1"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(elements)}">
+                <td class="listTD" colspan="6"> No customers available</td>
+            </tr>
+            <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.KundenDTO"*/-->
+            <tr th:each="kunde : ${elements}">
+                <td colspan="3"><span th:text="${kunde.name}"></span></td>
+                <td colspan="1"><a th:href="@{/rent/{id}(id=${kunde.id})}">LOGIN</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/">Cancel</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>

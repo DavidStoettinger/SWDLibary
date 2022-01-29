@@ -1,4 +1,4 @@
-package at.fh.winb.swd.libary.searchRequest;
+package at.fh.winb.swd.libary.searchRequest.base;
 
 import java.util.List;
 
