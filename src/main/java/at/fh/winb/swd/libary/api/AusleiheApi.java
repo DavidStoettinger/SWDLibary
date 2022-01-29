@@ -16,7 +16,7 @@ public interface AusleiheApi {
 
     AusleiheDTO createInstant(String kundenID, String exemplarID,String reservierungID,AusleiheDTO ausleiheDTO);
 
-    AusleiheDTO returnExemplar(String exe_id);
+    double returnExemplar(String exe_id);
 
     void delete(Long id);
 }

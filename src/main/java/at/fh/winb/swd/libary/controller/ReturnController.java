@@ -66,19 +66,27 @@ public class ReturnController {
 
     @Transactional
     @GetMapping("/{id}/{e_id}")
-    public String returnMedia(@PathVariable final String id,@PathVariable final String e_id, final Model model) {
-        final SearchRequest searchRequest = new SearchRequest(0, 100, null);
-        final  List<AusleiheDTO> ausleihen = ausleiheApi.list(new SearchRequest()).getElements().stream().filter(a -> a.getExemplar().getId() == Long.valueOf(e_id)).collect(Collectors.toList());
-
+    public String returnMedia(@PathVariable final String id, @PathVariable final String e_id, final Model model) {
+        double fee = ausleiheApi.returnExemplar(e_id);
 
         ExemplarDTO exemplarDTO = exemplarApi.get(Long.valueOf(e_id));
         exemplarDTO.setAusgeliehen(false);
-        exemplarDTO = exemplarApi.update(Long.valueOf(e_id),exemplarDTO);
+        exemplarDTO = exemplarApi.update(Long.valueOf(e_id), exemplarDTO);
 
 
-        final List<KundenDTO> element = kundenApi.list(searchRequest).getElements();
-        model.addAttribute("elements", element == null ? Collections.emptyList() : element);
-        model.addAttribute("totalCount", kundenApi.list(searchRequest).getTotalCount());
-        return (path + "/login");
+
+        if(fee > 0) {
+            model.addAttribute("kundenDTO", kundenApi.get(Long.valueOf(id)));
+            model.addAttribute("fee", fee);
+            return (path + "/fee");
+        }else {
+            final SearchRequest searchRequest = new SearchRequest(0, 100, null);
+            final List<KundenDTO> element = kundenApi.list(searchRequest).getElements();
+
+            model.addAttribute("elements", element == null ? Collections.emptyList() : element);
+            model.addAttribute("totalCount", kundenApi.list(searchRequest).getTotalCount());
+
+            return (path + "/login");
+        }
     }
 }

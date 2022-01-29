@@ -23,6 +23,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -107,17 +109,28 @@ public class AusleiheServiceImpl implements AusleiheService {
     }
 
     @Override
-    public AusleiheDTO returnExemplar(String exe_id) {
+    public double returnExemplar(String exe_id) {
         final SearchRequest searchRequest = new SearchRequest(0, 100, null);
-        List<AusleiheDTO> ausleiheDTOList =list(searchRequest).getElements().stream().filter(a -> Objects.equals(a.getExemplar().getId(), Long.valueOf(exe_id))).collect(Collectors.toList());
+        List<AusleiheDTO> ausleiheDTOList =
+                list(searchRequest).getElements().stream().filter(a -> a.getExemplar().getId().equals(Long.valueOf(exe_id))).collect(Collectors.toList());
 
+        if(ausleiheDTOList.isEmpty())
+            return 0;
         AusleiheDTO ausleiheDTO = ausleiheDTOList.stream().filter(a -> a.getIstZeit() == null).collect(Collectors.toList()).get(0);
 
         Date date = new Date();
         ausleiheDTO.setIstZeit(date);
 
 
-        return update(ausleiheDTO.getId(),ausleiheDTO);
+        return calculateFee(update(ausleiheDTO.getId(),ausleiheDTO));
+    }
+
+    private double calculateFee(AusleiheDTO ausleiheDTO){
+        if(ausleiheDTO.getIstZeit().before(ausleiheDTO.getSollZeit()) || ausleiheDTO.getIstZeit().equals(ausleiheDTO.getSollZeit()))
+            return 0;
+        Long days = Duration.between(ausleiheDTO.getSollZeit().toInstant(),ausleiheDTO.getIstZeit().toInstant()).toDays();
+        double price = 0.05;
+        return price * days.intValue();
     }
 
     private AusleiheDTO convertToDTO(final Ausleihe entity) {
