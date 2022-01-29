@@ -3,11 +3,13 @@ package at.fh.winb.swd.libary.services;
 import at.fh.winb.swd.libary.dto.ReservierungenDTO;
 import at.fh.winb.swd.libary.dto.base.PagedResultDTO;
 import at.fh.winb.swd.libary.dto.base.SimpleNamedDTO;
+import at.fh.winb.swd.libary.entity.Exemplar;
 import at.fh.winb.swd.libary.entity.Kunde;
 import at.fh.winb.swd.libary.entity.Medien;
 import at.fh.winb.swd.libary.entity.Reservierungen;
 import at.fh.winb.swd.libary.respository.ReservierungRepository;
 import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
+import at.fh.winb.swd.libary.services.interfaces.ExemplarService;
 import at.fh.winb.swd.libary.services.interfaces.KundeService;
 import at.fh.winb.swd.libary.services.interfaces.MedienService;
 import at.fh.winb.swd.libary.services.interfaces.ReservierungService;
@@ -19,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -28,13 +31,14 @@ public class ReservierungenServiceImpl implements ReservierungService {
     private final ReservierungRepository repository;
     private final MedienService medienService;
     private final KundeService kundenService;
-
+    private final ExemplarService exemplarService;
 
     @Autowired
-    public ReservierungenServiceImpl(ReservierungRepository repository, MedienService medienService, KundeService kundenService) {
+    public ReservierungenServiceImpl(ReservierungRepository repository, MedienService medienService, KundeService kundenService, ExemplarService exemplarService) {
         this.repository = repository;
         this.medienService = medienService;
         this.kundenService = kundenService;
+        this.exemplarService = exemplarService;
     }
 
 
@@ -51,22 +55,22 @@ public class ReservierungenServiceImpl implements ReservierungService {
 
     @Override
     public ReservierungenDTO create(ReservierungenDTO reservierungenDTO) {
-        if(reservierungenDTO.getId() != null){
-            logger.warn("Duplicate ID on creation request: "+reservierungenDTO.getId());
+        if (reservierungenDTO.getId() != null) {
+            logger.warn("Duplicate ID on creation request: " + reservierungenDTO.getId());
             return null;
         }
 
         final Reservierungen entity = new Reservierungen();
-        return saveEntity(convertToEntity(reservierungenDTO,entity));
+        return saveEntity(convertToEntity(reservierungenDTO, entity));
     }
 
     @Override
     public ReservierungenDTO update(Long id, ReservierungenDTO reservierungenDTO) {
         final Optional<Reservierungen> optionalReservierungen = repository.findById(id);
-        if(optionalReservierungen.isEmpty())
+        if (optionalReservierungen.isEmpty())
             return null;
 
-        final Reservierungen entity = convertToEntity(reservierungenDTO,optionalReservierungen.get());
+        final Reservierungen entity = convertToEntity(reservierungenDTO, optionalReservierungen.get());
         return convertToDTO(repository.save(entity));
     }
 
@@ -81,36 +85,55 @@ public class ReservierungenServiceImpl implements ReservierungService {
     }
 
 
-    private ReservierungenDTO convertToDTO(final Reservierungen entity){
+    @Override
+    public ReservierungenDTO createInstant(String kundenID, String exemplarID, ReservierungenDTO reservierungenDTO) {
+        Kunde kunde = kundenService.getKunde(Long.valueOf(kundenID));
+        Exemplar e = exemplarService.getExemplar(Long.valueOf(exemplarID));
+        Medien medien = medienService.getMedien(e.getMedien().getId());
+
+        Date date = new Date();
+
+        reservierungenDTO.setKunde(SimpleNamedDTO.with(kunde.getId(), kunde.getName()));
+        reservierungenDTO.setMedien(SimpleNamedDTO.with(medien.getId(), medien.getName(), String.valueOf(medien.getFSK()), medien.getBeschreibung()));
+        reservierungenDTO.setZeitpunkt(date);
+        reservierungenDTO.setAusleihe(date);
+        Reservierungen r = new Reservierungen();
+        return saveEntity(convertToEntity(reservierungenDTO,r));
+    }
+
+    private ReservierungenDTO convertToDTO(final Reservierungen entity) {
         final ReservierungenDTO dto = new ReservierungenDTO();
         dto.setId(entity.getId());
         dto.setAusleihe(entity.getAusleihe());
         dto.setZeitpunkt(entity.getZeitpunkt());
 
         final Medien medien = entity.getMedien();
-        dto.setMedien(SimpleNamedDTO.with(medien.getId(),medien.getName(), String.valueOf(medien.getFSK()),medien.getBeschreibung()));
+        dto.setMedien(SimpleNamedDTO.with(medien.getId(), medien.getName(), String.valueOf(medien.getFSK()), medien.getBeschreibung()));
         final Kunde kunde = entity.getKunde();
-        dto.setMedien(SimpleNamedDTO.with(kunde.getId(), kunde.getName()));
+        dto.setKunde(SimpleNamedDTO.with(kunde.getId(), kunde.getName()));
 
         return dto;
     }
 
-    private Reservierungen convertToEntity(final ReservierungenDTO dto, final Reservierungen entity){
+    private Reservierungen convertToEntity(final ReservierungenDTO dto, final Reservierungen entity) {
         entity.setId(dto.getId());
         entity.setAusleihe(dto.getAusleihe());
         entity.setZeitpunkt(dto.getZeitpunkt());
 
+
+        entity.setMedien(medienService.getMedien(dto.getMedien().getId()));
+        entity.setKunde(kundenService.getKunde(dto.getKunde().getId()));
         //final Medien medien = medienService.getMedien()
 
 
         return entity;
     }
 
-    private ReservierungenDTO saveEntity(final Reservierungen entity){
+    private ReservierungenDTO saveEntity(final Reservierungen entity) {
         return convertToDTO(repository.save(entity));
     }
 
-    private Pageable getPageableFromSearchRequest(final SearchRequest searchRequest){
-        return PageRequest.of(searchRequest.getPage(),searchRequest.getPageSize());
+    private Pageable getPageableFromSearchRequest(final SearchRequest searchRequest) {
+        return PageRequest.of(searchRequest.getPage(), searchRequest.getPageSize());
     }
 }

@@ -4,17 +4,18 @@ import at.fh.winb.swd.libary.api.AusleiheApi;
 import at.fh.winb.swd.libary.api.ExemplarApi;
 import at.fh.winb.swd.libary.api.KundenApi;
 import at.fh.winb.swd.libary.api.ReservierungApi;
+import at.fh.winb.swd.libary.dto.AusleiheDTO;
 import at.fh.winb.swd.libary.dto.ExemplarDTO;
 import at.fh.winb.swd.libary.dto.KundenDTO;
 import at.fh.winb.swd.libary.dto.ReservierungenDTO;
+import at.fh.winb.swd.libary.entity.Ausleihe;
 import at.fh.winb.swd.libary.entity.Exemplar;
+import at.fh.winb.swd.libary.entity.Reservierungen;
 import at.fh.winb.swd.libary.searchRequest.base.SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
@@ -84,10 +85,13 @@ public class RentController {
     }
 
     @Transactional
-    @GetMapping("/{id}/{e_id}/instant")
-    public String getInstantCheckoutComplete(@PathVariable final String id, @PathVariable final String e_id, final Model model) {
-        ReservierungenDTO reservierungenDTO = new ReservierungenDTO();
+    @PostMapping("/{id}/{e_id}/instant")
+    public String getInstantCheckoutComplete(@PathVariable final String id, @PathVariable final String e_id, @ModelAttribute AusleiheDTO ausleiheDTO,@ModelAttribute ReservierungenDTO reservierungenDTO, final Model model) {
 
+
+        ReservierungenDTO r = reservierungApi.createInstant(id,e_id,reservierungenDTO);
+        String r_id = r.getId().toString();
+        ausleiheApi.createInstant(id,e_id,r_id,ausleiheDTO);
 
         model.addAttribute("kundenDTO", kundenApi.get(Long.valueOf(id)));
         model.addAttribute("exemplarDTO", exemplarApi.get(Long.valueOf(id)));

@@ -9,12 +9,14 @@
 <div class="container">
     <div class="containerDiv"></div>
     <div class="content containerDiv">
-        <div class="instant">
-            <caption th:text="'Instant Checkout for '+${exemplarDTO.medien.name}"></caption>
-            <a th:href="@{/rent/{id}/{e_id}/instant(id=${kundenDTO.id},e_id=${exemplarDTO.id})}">Confirm instant
-                checkout</a>
-            <a href="/">Cancel</a>
-        </div>
+        <form action="#" th:action="@{/rent/{id}/{e_id}/instant(id=${kundenDTO.id},e_id=${exemplarDTO.id})}"
+              th:object="${ausleiheDTO}" method="post">
+            <div class="instant" th:object="${reservierungenDTO}">
+                <caption th:text="'Instant Checkout for '+${exemplarDTO.medien.name}"></caption>
+                <input type="submit" value="Add Ausleihe">
+                <a href="/">Cancel</a>
+            </div>
+        </form>
     </div>
     <div class="containerDiv"></div>
 </div>

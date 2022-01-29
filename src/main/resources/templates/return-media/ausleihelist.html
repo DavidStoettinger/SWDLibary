@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of rent media</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div class="container">
+    <div class="containerDiv"></div>
+    <div class="content containerDiv">
+        <table>
+            <caption>List of rent media</caption>
+            <thead>
+            <tr>
+                <th id="adresse" colspan="3">ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(elements)}">
+                <td class="listTD" colspan="6"> No Media rent</td>
+            </tr>
+            <!--/*@thymesVar id="kunde" type="at.fh.winb.swd.libary.dto.BibliothekDTO"*/-->
+            <tr th:each="ausleihe : ${elements}">
+                <td colspan="3"><span th:text="${ausleihe.id}"></span></td>
+                <td colspan="1"><a th:href="@{/return/{id}(id=${ausleihe.id})}">Return</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--
+        <th id="newResultLink"><a th:href="@{/registeredtests/{personId}(personId=${kundenDTO.id})}">Show all test
+            results</a>
+        </th>-->
+        <a href="/">Cancel</a>
+    </div>
+    <div class="containerDiv"></div>
+</div>
+</body>
+</html>
