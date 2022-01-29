@@ -88,6 +88,9 @@ public class RentController {
     @PostMapping("/{id}/{e_id}/instant")
     public String getInstantCheckoutComplete(@PathVariable final String id, @PathVariable final String e_id, @ModelAttribute AusleiheDTO ausleiheDTO,@ModelAttribute ReservierungenDTO reservierungenDTO, final Model model) {
 
+        ExemplarDTO exemplarDTO = exemplarApi.get(Long.valueOf(e_id));
+        exemplarDTO.setAusgeliehen(true);
+        exemplarDTO = exemplarApi.update(Long.valueOf(e_id),exemplarDTO);
 
         ReservierungenDTO r = reservierungApi.createInstant(id,e_id,reservierungenDTO);
         String r_id = r.getId().toString();

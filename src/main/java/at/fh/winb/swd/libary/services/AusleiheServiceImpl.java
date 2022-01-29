@@ -23,9 +23,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class AusleiheServiceImpl implements AusleiheService {
@@ -90,7 +89,6 @@ public class AusleiheServiceImpl implements AusleiheService {
     @Override
     public AusleiheDTO createInstant(String kundenID, String exemplarID,String reservierungID, AusleiheDTO ausleiheDTO) {
         Exemplar e = exemplarService.getExemplar(Long.valueOf(exemplarID));
-        e.setAusgeliehen(true);
         Kunde k = kundenService.getKunde(Long.valueOf(exemplarID));
          Reservierungen r = reservierungService.getReservierungen(Long.valueOf(reservierungID));
 
@@ -106,6 +104,20 @@ public class AusleiheServiceImpl implements AusleiheService {
         ausleiheDTO.setSollZeit(c.getTime());
         Ausleihe a = new Ausleihe();
         return saveEntity(convertToEntity(ausleiheDTO,a));
+    }
+
+    @Override
+    public AusleiheDTO returnExemplar(String exe_id) {
+        final SearchRequest searchRequest = new SearchRequest(0, 100, null);
+        List<AusleiheDTO> ausleiheDTOList =list(searchRequest).getElements().stream().filter(a -> Objects.equals(a.getExemplar().getId(), Long.valueOf(exe_id))).collect(Collectors.toList());
+
+        AusleiheDTO ausleiheDTO = ausleiheDTOList.stream().filter(a -> a.getIstZeit() == null).collect(Collectors.toList()).get(0);
+
+        Date date = new Date();
+        ausleiheDTO.setIstZeit(date);
+
+
+        return update(ausleiheDTO.getId(),ausleiheDTO);
     }
 
     private AusleiheDTO convertToDTO(final Ausleihe entity) {
